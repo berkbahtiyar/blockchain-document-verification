@@ -1,0 +1,547 @@
+{
+ "tool": "proposal_tool",
+ "version": "4.11.0",
+ "stage": "proposal",
+ "stageLabel": "Proposal",
+ "stageFills": "The plan: who the system is for, what it will do, how it will be built and checked, and who does what. Nothing is implemented yet: the Delivery and evidence part stays empty.",
+ "saved": "2026-11-24T16:54:07.358Z",
+ "proposal": {
+  "course": "SEN0401",
+  "semester": "2026-2027 Fall",
+  "tech": [
+   "JSONLDContext",
+   "PROVOStandard"
+  ],
+  "stage": "proposal",
+  "projectKinds": [
+   "PK_Provenance"
+  ],
+  "modules": [
+   {
+    "name": "Document Processing",
+    "kind": "module",
+    "what": "Hash calculation and receipt generation",
+    "epic": "E1",
+    "owner": "Berk Bahtiyar"
+   },
+   {
+    "name": "Verification",
+    "kind": "module",
+    "what": "Document lookup and result display",
+    "epic": "E2",
+    "owner": "Berk Bahtiyar"
+   },
+   {
+    "name": "Smart Contract",
+    "kind": "module",
+    "what": "Authorized document registration",
+    "epic": "E3",
+    "owner": "Berk Bahtiyar"
+   }
+  ],
+  "team": [
+   {
+    "name": "Berk Bahtiyar",
+    "no": "2200001070",
+    "email": "22000010@stu.iku.edu.tr",
+    "share": "100",
+    "admin": [
+     "A_TeamLead"
+    ],
+    "dev": [
+     "R_Frontend",
+     "R_Analyst",
+     "R_Ops",
+     "R_Tester"
+    ]
+   }
+  ],
+  "leads": {
+   "P01": "Berk Bahtiyar",
+   "P03": "Berk Bahtiyar",
+   "P05": "Berk Bahtiyar",
+   "P07": "Berk Bahtiyar",
+   "P09": "Berk Bahtiyar",
+   "P11": "Berk Bahtiyar",
+   "P13": "Berk Bahtiyar",
+   "P02": "Berk Bahtiyar",
+   "P04": "Berk Bahtiyar",
+   "P06": "Berk Bahtiyar",
+   "P08": "Berk Bahtiyar",
+   "P10": "Berk Bahtiyar",
+   "P12": "Berk Bahtiyar",
+   "P14": "Berk Bahtiyar"
+  },
+  "title": "Blockchain-Based Document Verification System",
+  "mission": "The project aims to provide document issuers and document verifiers with a simple web application for checking the integrity of PDF documents. The system allows document issuers to register document fingerprints on a blockchain and enables document verifiers to detect modified documents without storing the original document contents on the blockchain.",
+  "missionOrigin": "IOrigin_SessionDrafted",
+  "outcome": "Document verifiers will be able to determine whether a received PDF matches a fingerprint previously registered by the designated document issuer. The system will provide a clear verification result without exposing the contents of the original document.",
+  "problem": "Digital documents such as certificates and reports can be copied or modified after they are issued. A person receiving a PDF document may not know whether the received file is identical to the original version. Traditional verification methods may require contacting the document issuer or comparing documents manually. For example, verifying 10 documents manually may require 10 separate comparisons or confirmation requests. This process can increase the time and effort required for document verification. The proposed system addresses this problem by generating a SHA-256 hash for each PDF document and registering the hash on a blockchain. When a document is received, its hash can be calculated again and compared with the registered record. The system aims to reduce manual verification effort, detect document modifications and provide a simple verification method without publishing original document contents. The numerical example is illustrative and actual customer requirements will be confirmed through a customer interview.",
+  "endUsers": [
+   {
+    "group": "Document issuer",
+    "task": "They select PDF documents, generate SHA-256 fingerprints, register these fingerprints on the blockchain using an authorized wallet and download registration receipts after successful transactions.",
+    "who": "Staff members of the customer organization who are responsible for preparing, issuing and distributing official PDF documents, certificates and reports to their recipients.",
+    "device": "Browser",
+    "frequency": "occasional"
+   },
+   {
+    "group": "Document verifier",
+    "who": "Individuals who receive digital PDF documents from the customer organization and need to check whether the received documents match the original versions registered by the document issuer.",
+    "task": "They select received PDF documents, calculate their SHA-256 fingerprints, compare the fingerprints with blockchain registration records and view the verification results to check document integrity.",
+    "frequency": "occasional",
+    "device": "Browser"
+   }
+  ],
+  "customers": [
+   {
+    "name": "Koel Electronics",
+    "contact": "Can Çalışkan - Business Analyst",
+    "reached": "A meeting with the company representative  is planned during the requirements analysis phase to discuss document verification needs.",
+    "relation": "operator",
+    "gets": "A simple web application for registering and verifying digital documents using blockchain technology."
+   }
+  ],
+  "areas": [
+   {
+    "area": "Document Processing",
+    "where": "Web browser",
+    "measure": "One PDF at a time"
+   },
+   {
+    "area": "Registration and Verification",
+    "where": "Web browser",
+    "measure": "One issuer and one smart contract are planned"
+   }
+  ],
+  "deliverables": [
+   {
+    "text": "PDF selection and SHA-256 hashing",
+    "area": "A1",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "JSON-LD registration receipt",
+    "area": "A1",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "Issuer-only document registration",
+    "area": "A2",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   },
+   {
+    "text": "Document verification and result display",
+    "area": "A2",
+    "layer": "Layer_Product",
+    "kind": "Kind_Functional"
+   }
+  ],
+  "exclusions": [
+   {
+    "what": "Mainnet deployment and real payments",
+    "why": "To avoid real transaction costs and financial risks."
+   },
+   {
+    "what": "Original document storage on blockchain",
+    "why": "To protect document contents and reduce storage costs."
+   },
+   {
+    "what": "Multiple issuers and identity certification",
+    "why": "To keep the project manageable for a single developer."
+   }
+  ],
+  "entities": [
+   {
+    "entity": "Document Fingerprint",
+    "def": "SHA-256 hash calculated from a PDF file.",
+    "create": "yes",
+    "use": "yes",
+    "end": "no"
+   },
+   {
+    "entity": "Registration",
+    "def": "Blockchain record containing a document fingerprint and registration timestamp.",
+    "create": "yes",
+    "use": "yes",
+    "end": "no"
+   },
+   {
+    "def": "JSON-LD record containing document registration and transaction information.",
+    "entity": "Verification Receipt",
+    "create": "yes",
+    "use": "yes",
+    "end": "yes"
+   }
+  ],
+  "projectKind": "PK_Provenance",
+  "techWhy": "JSON-LD will be used to represent document registration receipts in a structured and machine-readable format. PROV-O will describe the document fingerprint as an entity, the registration process as an activity and the document issuer as an agent. These technologies will provide consistent metadata without requiring a complex database or a separate semantic processing engine.",
+  "goals": [
+   {
+    "goal": "Enable reliable document verification",
+    "facing": "Facing_Mission",
+    "area": "A2",
+    "why": "To allow document verifiers to detect changes in registered PDF documents."
+   },
+   {
+    "goal": "Complete document processing and receipt generation",
+    "facing": "Facing_Scope",
+    "area": "A1",
+    "why": "To ensure that PDF hashing and registration receipt generation are completed."
+   },
+   {
+    "goal": "Keep implementation within the agreed project scope",
+    "facing": "Facing_Containment",
+    "area": "A2",
+    "why": "To avoid unauthorized registration, original document publication and out-of-scope features."
+   }
+  ],
+  "spec": "The system shall allow users to select PDF documents through a simple web interface. Each document shall be limited to a maximum file size of 10 MB. The application shall calculate a SHA-256 hash locally in the browser. The designated document issuer shall be able to register the hash using a Solidity smart contract on the Ethereum Sepolia test network. Document verifiers shall be able to check whether a calculated hash exists in the contract. The system shall display registered, not registered or an appropriate error message. Duplicate and unauthorized registrations shall be rejected. A JSON-LD receipt shall be available after successful registration. Original PDF contents shall not be stored on the blockchain.",
+  "scenarios": [
+   {
+    "kind": "Scen_Nominal",
+    "text": "Given a registered PDF, when the verifier selects the original file, then the system displays Registered."
+   },
+   {
+    "kind": "Scen_Rejection",
+    "text": "Given an unauthorized wallet, when it attempts to register a document, then the smart contract rejects the transaction."
+   },
+   {
+    "kind": "Scen_Boundary",
+    "text": "Given a valid PDF with a size of exactly 10 MB, when the user selects it, then the application accepts the file."
+   },
+   {
+    "kind": "Scen_Absent",
+    "text": "Given that no PDF has been selected, when the user attempts verification, then the application displays an error message."
+   }
+  ],
+  "useCase": "Actor 1: Document issuer\n\nUC1: Select a PDF document.\nUC2: Calculate the SHA-256 fingerprint.\nUC3: Register the fingerprint on the blockchain.\nUC4: Download a registration receipt.\n\nActor 2: Document verifier\n\nUC5: Select a received PDF document.\nUC6: Verify the document fingerprint.\nUC7: View the verification result.",
+  "objectives": [
+   {
+    "objective": "Achieve correct document verification results",
+    "goal": "G1",
+    "mkind": "Meas_Counted",
+    "query": "Count correct verification results for two original and two modified PDF documents.",
+    "baseline": "0 of 4 verified",
+    "target": "4 of 4 verified",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Complete document processing functions",
+    "goal": "G2",
+    "mkind": "Meas_Counted",
+    "query": "Count successful SHA-256 hashing and JSON-LD receipt generation tests.",
+    "baseline": "0 of 2",
+    "target": "2 of 2",
+    "dir": "Dir_Increase"
+   },
+   {
+    "objective": "Maintain the agreed implementation boundaries",
+    "goal": "G3",
+    "mkind": "Meas_Counted",
+    "query": "Count unauthorized registrations, raw PDF publications and implemented excluded features during testing and code review.",
+    "baseline": "0",
+    "target": "0",
+    "dir": "Dir_Hold"
+   }
+  ],
+  "activity": "The process starts when the user selects a PDF document. The application checks the file type and size. If the file is invalid, an error message is displayed. Otherwise, the SHA-256 fingerprint is calculated. The user selects registration or verification. Registration requires the authorized issuer wallet and transaction confirmation. If the transaction succeeds, a receipt can be downloaded. If it fails, an error is displayed. Verification reads the blockchain record and displays the verification result. The process ends after the result is shown.",
+  "sequence": "The document issuer selects a PDF through the browser interface. The browser sends the document bytes to the Web Crypto API locally and receives a SHA-256 fingerprint. The browser requests transaction approval from MetaMask. MetaMask submits the fingerprint to the smart contract. The contract checks authorization and returns a transaction result. After confirmation, the browser generates a receipt. The document verifier selects a received PDF. The browser calculates its fingerprint and sends a read-only request to the smart contract. The contract returns the registration status, and the browser displays the result to the verifier.",
+  "initiativeKind": "Kind_InitialDevelopment",
+  "epics": [
+   {
+    "epic": "PDF Processing and Receipt",
+    "objective": "O2"
+   },
+   {
+    "epic": "Document Verification",
+    "objective": "O1"
+   },
+   {
+    "epic": "Blockchain Registration",
+    "objective": "O3"
+   }
+  ],
+  "stories": [
+   {
+    "epic": "E1",
+    "role": "Document issuer",
+    "want": "to generate a SHA-256 fingerprint from a PDF document",
+    "so": "I can identify the exact version of the document",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Data",
+    "ac": "Given a valid PDF document, when the document issuer selects the file, then the application calculates and displays its SHA-256 fingerprint.",
+    "bv": "10",
+    "tc": "9",
+    "rr": "7",
+    "js": "2"
+   },
+   {
+    "epic": "E1",
+    "role": "Document issuer",
+    "want": "to download a registration receipt",
+    "so": "I can retain evidence of document registration",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Data",
+    "ac": "Given a successfully confirmed registration transaction, when the document issuer clicks the download button, then the application downloads a JSON-LD receipt containing the fingerprint and transaction information.",
+    "bv": "6",
+    "tc": "4",
+    "rr": "3",
+    "js": "3"
+   },
+   {
+    "epic": "E2",
+    "want": "to verify an original PDF document",
+    "role": "Document verifier",
+    "so": "I can check whether it matches a registered document",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interaction",
+    "ac": "Given a previously registered PDF document, when the document verifier selects the identical file and clicks Verify, then the system displays Registered.",
+    "bv": "10",
+    "tc": "9",
+    "rr": "7",
+    "js": "3"
+   },
+   {
+    "want": "to check whether a document has been modified",
+    "epic": "E2",
+    "role": "Document verifier",
+    "so": "I can identify files that do not match a registered fingerprint",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Interaction",
+    "ac": "Given a modified version of a registered PDF whose new fingerprint has not been registered, when the document verifier checks the file, then the system displays Not Registered.",
+    "bv": "9",
+    "tc": "7",
+    "rr": "8",
+    "js": "2"
+   },
+   {
+    "want": "to restrict document registration to my authorized wallet",
+    "epic": "E3",
+    "role": "Document issuer",
+    "so": "unauthorized users cannot register documents in my name",
+    "ac": "Given a wallet address that is not authorized to register documents, when the wallet attempts to submit a new fingerprint, then the smart contract rejects the transaction and leaves its stored records unchanged.",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Security",
+    "bv": "9",
+    "tc": "8",
+    "rr": "9",
+    "js": "3"
+   },
+   {
+    "want": "to register a document fingerprint on the blockchain",
+    "so": "document verifiers can check it later",
+    "cat": "Cat_NewCapability",
+    "concern": "Concern_Security",
+    "epic": "E3",
+    "role": "Document issuer",
+    "ac": "Given an authorized issuer wallet and an unregistered document fingerprint, when the issuer confirms the registration transaction, then the smart contract stores the fingerprint and its registration timestamp. A repeated registration of the same fingerprint shall be rejected.",
+    "bv": "10",
+    "tc": "10",
+    "rr": "9",
+    "js": "3"
+   }
+  ],
+  "dod": [
+   {
+    "criterion": "SHA-256 document fingerprints are generated correctly.",
+    "check": "Compare the generated fingerprint with a reference SHA-256 hash of the same PDF."
+   },
+   {
+    "criterion": "Original and modified documents are correctly identified.",
+    "check": "Verify two original and two modified PDF documents and check the displayed results."
+   },
+   {
+    "criterion": "Unauthorized and duplicate registrations are rejected.",
+    "check": "Attempt registration using an unauthorized wallet and an already registered fingerprint."
+   }
+  ],
+  "classModel": "The system contains three main classes: DocumentFingerprint, Registration and Receipt. DocumentFingerprint contains the SHA-256 digest and file size. Registration contains the document digest, authorized issuer address and registration timestamp. Receipt contains the digest, issuer address, transaction hash and contract address. One document fingerprint can have zero or one blockchain registration. A confirmed registration can generate a receipt. Original PDF contents remain in the browser and are not permanently stored by the application.",
+  "tests": [
+   {
+    "story": "S1",
+    "case": "Generate the SHA-256 hash and compare it with an independent SHA-256 tool."
+   },
+   {
+    "case": "Download the receipt and verify the JSON-LD fields and transaction reference.",
+    "story": "S2"
+   },
+   {
+    "story": "S3",
+    "case": "Verify two original registered documents and check that both return Registered."
+   },
+   {
+    "story": "S4",
+    "case": "Verify modified versions of both documents and check that both return Not Registered."
+   },
+   {
+    "story": "S5",
+    "case": "Attempt document registration using an unauthorized wallet and check that the transaction is rejected."
+   },
+   {
+    "story": "S6",
+    "case": "Register a new fingerprint, verify its stored timestamp and attempt duplicate registration."
+   }
+  ],
+  "model_Data": "The data model contains DocumentFingerprint, Registration and Receipt entities. The document fingerprint is represented as a 32-byte SHA-256 digest. The smart contract uses the digest as a unique mapping key and stores the registration timestamp. The issuer address is defined during contract deployment. The JSON-LD receipt contains the document fingerprint, issuer address, contract address and transaction hash. Original PDF contents are not stored permanently.",
+  "model_Interaction": "The document issuer selects a PDF file through the browser interface and clicks the Register button. The application calculates the fingerprint and requests transaction approval through MetaMask. After confirmation, a success message and receipt download button are displayed. The document verifier selects a PDF and clicks the Verify button. The application displays Registered, Not Registered or an error message depending on the blockchain response.",
+  "model_Security": "Only the designated issuer wallet is authorized to register document fingerprints. Every registration request is checked by the smart contract before modifying its stored data. Unauthorized and duplicate registrations are rejected. Verification operations are read-only and cannot modify blockchain records. Original PDF contents remain in the browser. The system does not request or store wallet private keys, passwords or sensitive document contents.",
+  "chainDesign": "The project will use the Ethereum Sepolia test network and a simple Solidity smart contract for document registration and verification. MetaMask will be used to connect the authorized issuer wallet, while JavaScript and ethers.js will provide communication between the web application and the blockchain.\n\nThe application will calculate SHA-256 document fingerprints locally using the browser Web Crypto API. The smart contract will store fingerprints and registration timestamps using a mapping data structure. Only the designated issuer wallet will be allowed to register new fingerprints. Duplicate registrations will be rejected.\n\nEthereum uses a Proof of Stake consensus mechanism. Blockchain technology is selected because it provides an independently readable and tamper-resistant registration history. Unlike a traditional database controlled by a single administrator, confirmed registration records cannot be silently modified through the proposed smart contract.\n\nA traditional database would be simpler if all users fully trusted a central administrator. However, this project aims to demonstrate independently verifiable document registration. The test network will be used for educational purposes rather than production deployment. No cryptocurrency payments, tokens, NFTs or original PDF contents will be included in the system.",
+  "milestones": [
+   {
+    "deliverable": "Complete customer analysis, requirements and project proposal.",
+    "owner": "Berk Bahtiyar",
+    "date": "2026-11-24"
+   },
+   {
+    "date": "2026-11-30",
+    "deliverable": "Implement and test the Solidity smart contract.",
+    "owner": "Berk Bahtiyar"
+   },
+   {
+    "date": "2026-12-05",
+    "deliverable": "Develop the web interface, document verification and JSON-LD receipt generation.",
+    "owner": "Berk Bahtiyar"
+   },
+   {
+    "date": "2026-12-13",
+    "deliverable": "Complete system testing, customer validation, documentation, test report and tagged GitHub release.",
+    "owner": "Berk Bahtiyar"
+   }
+  ],
+  "risks": [
+   {
+    "risk": "Ethereum test network or faucet problems",
+    "likelihood": "medium",
+    "impact": "medium",
+    "mitigation": "Test the smart contract locally using Remix VM before deploying it to Sepolia."
+   },
+   {
+    "risk": "Smart contract and wallet integration errors",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Develop a single simple contract and test each function separately."
+   },
+   {
+    "risk": "Limited development time because of a single-member team",
+    "likelihood": "high",
+    "impact": "medium",
+    "mitigation": "Prioritize document registration and verification and avoid unnecessary features."
+   },
+   {
+    "risk": "Unclear customer requirements",
+    "likelihood": "medium",
+    "impact": "high",
+    "mitigation": "Confirm the customer's needs before implementation and keep the project scope limited."
+   }
+  ],
+  "refs": [
+   {
+    "ref": "NIST. FIPS PUB 180-4: Secure Hash Standard. https://csrc.nist.gov/pubs/fips/180-4/upd1/final"
+   },
+   {
+    "ref": "Ethereum Foundation. Ethereum Networks. https://ethereum.org/en/developers/docs/networks/"
+   },
+   {
+    "ref": "Solidity Documentation. https://docs.soliditylang.org/"
+   },
+   {
+    "ref": "MDN Web Docs. SubtleCrypto: digest() method. https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest"
+   },
+   {
+    "ref": "W3C. JSON-LD 1.1. https://www.w3.org/TR/json-ld11/"
+   },
+   {
+    "ref": "W3C. PROV-O: The PROV Ontology. https://www.w3.org/TR/prov-o/"
+   }
+  ],
+  "worklog": [
+   {
+    "seq": 1,
+    "ts": "2026-11-24T08:45:58.102Z",
+    "member": "Berk Bahtiyar",
+    "process": "P01",
+    "story": "",
+    "hours": 3,
+    "description": "Analyzed the project requirements, identified the end-user groups and defined the document verification workflow.",
+    "evidence": "",
+    "kind": "work",
+    "ref": "",
+    "prev": "GENESIS",
+    "hash": "1d827ade13a5bcf6a3204c288c99533e7d604041f4dd4217d68f60d8d5c00204"
+   },
+   {
+    "seq": 2,
+    "ts": "2026-11-24T08:53:36.898Z",
+    "member": "Berk Bahtiyar",
+    "process": "P02",
+    "story": "",
+    "hours": 1,
+    "description": "Identified the document issuer and document verifier as the main end-user groups and defined their needs and expectations from the system.",
+    "evidence": "",
+    "kind": "work",
+    "ref": "",
+    "prev": "1d827ade13a5bcf6a3204c288c99533e7d604041f4dd4217d68f60d8d5c00204",
+    "hash": "c77cd9198ed14c93aa2ee2b1854924573d7a89b82ff3275fa9dabeda8e52ee91"
+   },
+   {
+    "seq": 3,
+    "ts": "2026-11-24T08:54:08.664Z",
+    "member": "Berk Bahtiyar",
+    "process": "P03",
+    "story": "",
+    "hours": 2,
+    "description": "Defined the software requirements, user stories and acceptance criteria for PDF hashing, blockchain registration and document verification.",
+    "evidence": "",
+    "kind": "work",
+    "ref": "",
+    "prev": "c77cd9198ed14c93aa2ee2b1854924573d7a89b82ff3275fa9dabeda8e52ee91",
+    "hash": "4d47f4059b7265884fcd35f8774bcd947b05fde78b1ad3596e87461c8964ef92"
+   },
+   {
+    "seq": 4,
+    "ts": "2026-11-24T08:54:37.230Z",
+    "member": "Berk Bahtiyar",
+    "process": "P04",
+    "story": "",
+    "hours": 2,
+    "description": "Defined the system architecture and selected HTML, CSS, JavaScript, Solidity and Etherium Sepolia as the main development technologies.",
+    "evidence": "",
+    "kind": "work",
+    "ref": "",
+    "prev": "4d47f4059b7265884fcd35f8774bcd947b05fde78b1ad3596e87461c8964ef92",
+    "hash": "af228abdd3716ae569ab0afc1f302121b64f916d524c592bf6fcb1045cdf1498"
+   },
+   {
+    "seq": 5,
+    "ts": "2026-11-24T08:55:03.363Z",
+    "member": "Berk Bahtiyar",
+    "process": "P05",
+    "story": "",
+    "hours": 2,
+    "description": "Prepared the activity model, sequence model, class model and data model. Designed the document registration and verification workflows.",
+    "evidence": "",
+    "kind": "work",
+    "ref": "",
+    "prev": "af228abdd3716ae569ab0afc1f302121b64f916d524c592bf6fcb1045cdf1498",
+    "hash": "43852253d009d1a1e5c153bcfd09e4c37b6caf78abb22bf112e2c36e53df773b"
+   }
+  ],
+  "repo": "https://github.com/berkbahtiyar/blockchain-document-verification",
+  "repoCheck": {
+   "ok": true,
+   "result": "found",
+   "at": "2026-11-24T09:18:59.290Z",
+   "full_name": "berkbahtiyar/blockchain-document-verification",
+   "html_url": "https://github.com/berkbahtiyar/blockchain-document-verification",
+   "private": false,
+   "created_at": "2026-11-24T09:15:44Z",
+   "pushed_at": "2026-11-24T09:15:46Z",
+   "default_branch": "main",
+   "id": 1469915378
+  }
+ }
+}
